@@ -3,17 +3,17 @@ package jpostcode
 import "encoding/json"
 
 type Address struct {
-	Postcode       string `json:"postcode"`
+	PostCode       string `json:"postCode"`
 	Prefecture     string `json:"prefecture"`
-	PrefectureKana string `json:"prefecture_kana"`
-	PrefectureCode string `json:"prefecture_code"`
+	PrefectureKana string `json:"prefectureKana"`
+	PrefectureCode string `json:"prefectureCode"`
 	City           string `json:"city"`
-	CityKana       string `json:"city_kana"`
+	CityKana       string `json:"cityKana"`
 	Town           string `json:"town"`
-	TownKana       string `json:"town_kana"`
+	TownKana       string `json:"townKana"`
 	Street         string `json:"street"`
-	OfficeName     string `json:"office_name"`
-	OfficeNameKana string `json:"office_name_kana"`
+	OfficeName     string `json:"officeName"`
+	OfficeNameKana string `json:"officeNameKana"`
 }
 
 func (addr *Address) ToJSON() (string, error) {
