@@ -47,6 +47,15 @@ $ jpost 0010928
 {"postcode":"0010928","prefecture":"北海道",...
 ```
 
+## Update jpostcode-data
+
+```console
+$ cd jpostcode-data
+$ git pull origin master
+$ cd ..
+$ go generate
+```
+
 ## License
 
 * MIT
