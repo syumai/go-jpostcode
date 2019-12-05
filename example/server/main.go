@@ -11,14 +11,20 @@ import (
 
 func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "application/json; charset=utf-8")
+		if r.Method != http.MethodGet {
+			w.WriteHeader(http.StatusMethodNotAllowed)
+			fmt.Fprintln(w, "method not allowed")
+			return
+		}
 
 		postalCode := strings.TrimPrefix(r.URL.Path, "/")
 		if postalCode == "favicon.ico" {
 			w.WriteHeader(http.StatusNotFound)
-			fmt.Fprintln(w, `{"status": "404", "message": "not found"}`)
+			fmt.Fprintln(w, "not found")
 			return
 		}
+
+		w.Header().Set("Content-Type", "application/json; charset=utf-8")
 
 		addr, err := jpostcode.Find(postalCode)
 		if err != nil {
