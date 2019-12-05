@@ -16,7 +16,7 @@ func main() {
 		postalCode := strings.TrimPrefix(r.URL.Path, "/")
 		if postalCode == "favicon.ico" {
 			w.WriteHeader(http.StatusNotFound)
-			fmt.Fprintln(w, `{"status": "404", "message": "postal code is not found"}`)
+			fmt.Fprintln(w, `{"status": "404", "message": "not found"}`)
 			return
 		}
 
