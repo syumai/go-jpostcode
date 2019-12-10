@@ -4,7 +4,6 @@ package jpostcode
 import (
 	"encoding/json"
 	"io"
-	"io/ioutil"
 	"os"
 	"reflect"
 
@@ -28,13 +27,8 @@ func searchAddressesFromJSON(postCode string) ([]*Address, error) {
 		}
 		return nil, err
 	}
-	blob, err := ioutil.ReadAll(dataFile)
-	if err != nil {
-		return nil, err
-	}
 	var addressMap map[string]interface{}
-	err = json.Unmarshal(blob, &addressMap)
-	if err != nil {
+	if err := json.NewDecoder(dataFile).Decode(&addressMap); err != nil {
 		return nil, err
 	}
 	addressData, ok := addressMap[secondPostCode]
