@@ -1,5 +1,7 @@
 github.com/goccy/go-json v0.1.0 h1:wr+yPETC6gVw37CZmKBLJHBAAkGMibit9jM+P7sUJDk=
 github.com/goccy/go-json v0.1.0/go.mod h1:6MelG93GURQebXPDq3khkgXZkazVtN9CRI+MGFi0w8I=
+github.com/goccy/go-json v0.1.15 h1:DC3M3UNYrTkSL1GHo2Bx9POxBnFxonFPa1qqwMbkXk0=
+github.com/goccy/go-json v0.1.15/go.mod h1:6MelG93GURQebXPDq3khkgXZkazVtN9CRI+MGFi0w8I=
 github.com/mitchellh/mapstructure v1.1.2 h1:fmNYVwqnSfB9mZU6OS2O6GsXM+wcskZDuKQzvN1EDeE=
 github.com/mitchellh/mapstructure v1.1.2/go.mod h1:FVVH3fgwuzCH5S8UJGiWEs2h04kUh9fWfEaFds41c1Y=
 github.com/rakyll/statik v0.1.6 h1:uICcfUXpgqtw2VopbIncslhAmE5hwc4g20TEyEENBNs=
