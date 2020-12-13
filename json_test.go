@@ -45,7 +45,6 @@ func Test_searchAddressesFromJSON_AllFiles(t *testing.T) {
 			if len(addrs) == 0 {
 				t.Fatal("at least 1 address must be found")
 			}
-			return
 		})
 	}
 }
