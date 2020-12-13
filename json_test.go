@@ -18,20 +18,21 @@ func Test_searchAddressesFromJSON_AllFiles(t *testing.T) {
 	}
 	var postCodes []string
 	fs.Walk(staticFS, "/", func(path string, info iofs.FileInfo, err error) error {
-		if strings.HasSuffix(info.Name(), ".json") {
-			dataFile, err := staticFS.Open("/" + info.Name())
-			if err != nil {
-				t.Fatal(err)
-			}
-			var addressMap map[string]interface{}
-			if err := json.NewDecoder(dataFile).Decode(&addressMap); err != nil {
-				t.Fatal(err)
-			}
-			firstPostCode := strings.TrimSuffix(info.Name(), ".json")
-			for secondPostCode := range addressMap {
-				postCodes = append(postCodes, firstPostCode+secondPostCode)
-				return nil
-			}
+		if !strings.HasSuffix(info.Name(), ".json") {
+			return nil
+		}
+		dataFile, err := staticFS.Open("/" + info.Name())
+		if err != nil {
+			t.Fatal(err)
+		}
+		var addressMap map[string]interface{}
+		if err := json.NewDecoder(dataFile).Decode(&addressMap); err != nil {
+			t.Fatal(err)
+		}
+		firstPostCode := strings.TrimSuffix(info.Name(), ".json")
+		for secondPostCode := range addressMap {
+			postCodes = append(postCodes, firstPostCode+secondPostCode)
+			return nil
 		}
 		return nil
 	})
