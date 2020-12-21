@@ -2,7 +2,7 @@ package jpostcode
 
 import (
 	"encoding/json"
-	iofs "io/fs"
+	"os"
 	"strings"
 	"testing"
 
@@ -17,7 +17,7 @@ func Test_searchAddressesFromJSON_AllFiles(t *testing.T) {
 		t.Fatal(err)
 	}
 	var postCodes []string
-	fs.Walk(staticFS, "/", func(path string, info iofs.FileInfo, err error) error {
+	fs.Walk(staticFS, "/", func(path string, info os.FileInfo, err error) error {
 		if !strings.HasSuffix(info.Name(), ".json") {
 			return nil
 		}
