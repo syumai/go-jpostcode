@@ -2,11 +2,11 @@
 package jpostcode
 
 import (
+	"encoding/json"
 	"io"
 	"os"
 	"reflect"
 
-	"github.com/goccy/go-json"
 	"github.com/mitchellh/mapstructure"
 	"github.com/rakyll/statik/fs"
 	_ "github.com/syumai/go-jpostcode/statik"
