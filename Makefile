@@ -1,7 +1,13 @@
+GOTEST=go test -v
+TESTPKGS=$(shell go list ./... | grep -v -e example -e statik)
+
 test:
 # exclude TestAll_
-	go test -v -race -parallel=16 -run='^Test_'
+	$(GOTEST) -race -run='^Test_' $(TESTPKGS)
 
 test/all:
-	go test -v -race -parallel=16
+	$(GOTEST) $(TESTPKGS)
+
+test/all/race:
+	$(GOTEST) -race $(TESTPKGS)
 
