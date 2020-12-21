@@ -13,28 +13,29 @@ import (
 )
 
 func searchAddressesFromJSON(postCode string) ([]*Address, error) {
-	var addresses []*Address
 	if len(postCode) != 7 {
 		return nil, ErrInvalidArgument
 	}
 	firstPostCode := postCode[0:3]
 	secondPostCode := postCode[3:7]
 	dataFile, err := openDataFile("/" + firstPostCode + ".json")
-	defer dataFile.Close()
 	if err != nil {
-		if err != os.ErrNotExist {
-			return addresses, nil
+		if err == os.ErrNotExist {
+			return nil, nil // return empty result
 		}
 		return nil, err
 	}
+	defer dataFile.Close()
 	var addressMap map[string]interface{}
 	if err := json.NewDecoder(dataFile).Decode(&addressMap); err != nil {
 		return nil, err
 	}
 	addressData, ok := addressMap[secondPostCode]
 	if !ok {
-		return addresses, nil
+		return nil, nil // return empty result
 	}
+
+	var addresses []*Address
 	switch reflect.TypeOf(addressData).Kind() {
 	case reflect.Slice:
 		rawAddrs, ok := addressData.([]interface{})
