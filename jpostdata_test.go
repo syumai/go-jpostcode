@@ -39,12 +39,12 @@ func Test_Find(t *testing.T) {
 			wantErr:  ErrInvalidArgument,
 		},
 		"NG with not found by firstPostCode": {
-			postCode: "0006125", // not found by first 3 digits
+			postCode: "0008001", // not found by first 3 digits
 			want:     nil,
 			wantErr:  ErrNotFound,
 		},
 		"NG with not found by lastPostCode": {
-			postCode: "1060000", // not found by last 4 digits
+			postCode: "1630000", // not found by last 4 digits
 			want:     nil,
 			wantErr:  ErrNotFound,
 		},
