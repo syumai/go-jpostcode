@@ -23,6 +23,7 @@ func TestAll_searchAddressesFromJSON_Files(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
+		defer dataFile.Close()
 		var addressMap map[string]interface{}
 		if err := json.NewDecoder(dataFile).Decode(&addressMap); err != nil {
 			t.Fatal(err)
