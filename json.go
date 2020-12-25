@@ -4,6 +4,7 @@ package jpostcode
 import (
 	"encoding/json"
 	"io"
+	"net/http"
 	"os"
 	"reflect"
 
@@ -11,6 +12,16 @@ import (
 	"github.com/rakyll/statik/fs"
 	_ "github.com/syumai/go-jpostcode/statik"
 )
+
+var jsonStaticFS http.FileSystem
+
+func init() {
+	var err error
+	jsonStaticFS, err = fs.New()
+	if err != nil {
+		panic(err)
+	}
+}
 
 func searchAddressesFromJSON(postCode string) ([]*Address, error) {
 	if len(postCode) != 7 {
@@ -69,9 +80,5 @@ func convertJSONToAddress(input interface{}) (*Address, error) {
 }
 
 func openDataFile(filePath string) (io.ReadCloser, error) {
-	staticFS, err := fs.New()
-	if err != nil {
-		return nil, err
-	}
-	return staticFS.Open(filePath)
+	return jsonStaticFS.Open(filePath)
 }
