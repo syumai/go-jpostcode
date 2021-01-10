@@ -13,3 +13,5 @@ jobs:
           go-version: '^1.15.6'
       - name: Run tests
         run: make test
+      - name: Run all tests
+        run: make test/all/race
