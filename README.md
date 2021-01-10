@@ -50,10 +50,7 @@ $ jpost 0010928
 ## Update jpostcode-data
 
 ```console
-$ cd jpostcode-data
-$ git pull origin master
-$ cd ..
-$ go generate
+$ make update
 ```
 
 ## License

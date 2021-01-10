@@ -12,5 +12,5 @@ func Find(postCode string) (*Address, error) {
 }
 
 func Search(postCode string) ([]*Address, error) {
-	return searchAddressesFromJSON(postCode)
+	return adapter.SearchAddressesFromPostCode(postCode)
 }

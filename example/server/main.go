@@ -55,7 +55,7 @@ func main() {
 		fmt.Fprintf(w, "%s\n", addrJSON)
 	})
 
-	port := "8080"
+	port := "8090"
 	fmt.Printf("listening on http://localhost:%s\n", port)
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", port), nil))
 }
