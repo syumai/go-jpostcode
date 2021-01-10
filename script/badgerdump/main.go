@@ -20,7 +20,6 @@ func main() {
 	}
 	defer db.Close()
 
-	var postCodes []string
 	filepath.Walk("./jpostcode-data/data/json", func(path string, info os.FileInfo, err error) error {
 		if !strings.HasSuffix(info.Name(), ".json") {
 			return nil
@@ -37,12 +36,8 @@ func main() {
 		firstPostCode := strings.TrimSuffix(info.Name(), ".json")
 		for secondPostCode, val := range addressMap {
 			postCode := firstPostCode + secondPostCode
-			postCodes = append(postCodes, postCode)
 
 			fmt.Println(postCode)
-			if err != nil {
-				panic(err)
-			}
 			addrJSON, err := json.Marshal(val)
 			if err != nil {
 				panic(err)
