@@ -24,7 +24,7 @@ fmt.Println(addressJSON)
 
 ```console
 $ go run example/server/main.go
-$ curl localhost:8080/0010928
+$ curl http://localhost:8090/0010928
 ```
 
 ## Install a CLI tool to get address from postcode
