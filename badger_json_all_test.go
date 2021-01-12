@@ -10,7 +10,7 @@ import (
 
 func TestAll_searchAddressesFromJSON_Files(t *testing.T) {
 	var postCodes []string
-	filepath.Walk("./jpostcode-data/data/json", func(path string, info os.FileInfo, err error) error {
+	err := filepath.Walk("./jpostcode-data/data/json", func(path string, info os.FileInfo, err error) error {
 		if info == nil {
 			return nil
 		}
@@ -19,12 +19,12 @@ func TestAll_searchAddressesFromJSON_Files(t *testing.T) {
 		}
 		dataFile, err := os.Open("./jpostcode-data/data/json/" + info.Name())
 		if err != nil {
-			t.Fatal(err)
+			return err
 		}
 		defer dataFile.Close()
 		var addressMap map[string]interface{}
 		if err := json.NewDecoder(dataFile).Decode(&addressMap); err != nil {
-			t.Fatal(err)
+			return err
 		}
 		firstPostCode := strings.TrimSuffix(info.Name(), ".json")
 		for secondPostCode := range addressMap {
@@ -33,6 +33,9 @@ func TestAll_searchAddressesFromJSON_Files(t *testing.T) {
 		}
 		return nil
 	})
+	if err != nil {
+		t.Fatal(err)
+	}
 	a, err := newBadgerAdapter()
 	if err != nil {
 		t.Fatal(err)
