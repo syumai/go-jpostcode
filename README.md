@@ -29,7 +29,7 @@ $ curl http://localhost:8090/0010928
 
 ### Building
 
-go-jpostcode doesn't use `cgo` directly, but its dependency `badger` depends on it. if you want to run build without cgo, please add `cgo_enabled=0` to your build command.`
+go-jpostcode doesn't use `cgo` directly, but its dependency `badger` depends on it. If you want to run build without cgo, please add `cgo_enabled=0` to your build command.
 
 ## Install a CLI tool to get address from postcode
 
