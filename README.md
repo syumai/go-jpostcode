@@ -27,6 +27,10 @@ $ go run example/server/main.go
 $ curl http://localhost:8090/0010928
 ```
 
+### Building
+
+go-jpostcode doesn't use `cgo` directly, but its dependency `badger` depends on it. if you want to run build without cgo, please add `cgo_enabled=0` to your build command.`
+
 ## Install a CLI tool to get address from postcode
 
 * A CLI tool is given as [jpost](https://github.com/syumai/go-jpostcode/blob/master/cmd/jpost).
