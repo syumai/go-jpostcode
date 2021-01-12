@@ -53,23 +53,23 @@ func (a *badgerAdapter) SearchAddressesFromPostCode(postCode string) ([]*Address
 	}
 
 	var addressData interface{}
-	a.db.View(func(txn *badger.Txn) error {
+	err := a.db.View(func(txn *badger.Txn) error {
 		item, err := txn.Get([]byte(postCode))
 		if err != nil {
 			return err
 		}
-		item.Value(func(val []byte) error {
+		return item.Value(func(val []byte) error {
 			buf := bytes.NewBuffer(val)
-			if err := json.NewDecoder(buf).Decode(&addressData); err != nil {
-				return err
-			}
-			return nil
+			return json.NewDecoder(buf).Decode(&addressData)
 		})
-		return nil
 	})
 
-	if addressData == nil {
-		return nil, ErrNotFound
+	if err != nil {
+		switch err {
+		case badger.ErrKeyNotFound:
+			return nil, ErrNotFound
+		}
+		return nil, err
 	}
 
 	var addresses []*Address
