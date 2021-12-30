@@ -1,6 +1,7 @@
 package main
 
 import (
+	"compress/gzip"
 	"encoding/json"
 	"fmt"
 	"os"
@@ -53,13 +54,19 @@ func main() {
 		return nil
 	})
 
-	f, err := os.OpenFile("./badger/dump.db", os.O_WRONLY|os.O_CREATE, 0666)
+	f, err := os.OpenFile("./badger/dump.db.gz", os.O_WRONLY|os.O_CREATE, 0666)
 	if err != nil {
 		panic(err)
 	}
 	defer f.Close()
 
-	_, err = db.Backup(f, 0)
+	gw, err := gzip.NewWriterLevel(f, gzip.BestCompression)
+	if err != nil {
+		panic(err)
+	}
+	defer gw.Close()
+
+	_, err = db.Backup(gw, 0)
 	if err != nil {
 		panic(err)
 	}

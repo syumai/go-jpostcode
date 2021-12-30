@@ -2,6 +2,7 @@ package jpostcode
 
 import (
 	"bytes"
+	"compress/gzip"
 	"embed"
 	"encoding/json"
 	"fmt"
@@ -19,11 +20,17 @@ type badgerAdapter struct {
 }
 
 func newBadgerAdapter() (*badgerAdapter, error) {
-	f, err := staticFS.Open("badger/dump.db")
+	f, err := staticFS.Open("badger/dump.db.gz")
 	if err != nil {
 		return nil, err
 	}
 	defer f.Close()
+
+	gr, err := gzip.NewReader(f)
+	if err != nil {
+		return nil, err
+	}
+	defer gr.Close()
 
 	opt := badger.DefaultOptions("").WithInMemory(true)
 	opt.Logger = nil
@@ -33,7 +40,7 @@ func newBadgerAdapter() (*badgerAdapter, error) {
 		return nil, err
 	}
 
-	err = db.Load(f, 100)
+	err = db.Load(gr, 100)
 	if err != nil {
 		return nil, err
 	}
