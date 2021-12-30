@@ -14,5 +14,4 @@ test/all/race:
 update:
 	cd jpostcode-data && git pull origin master
 	go run script/badgerdump/main.go
-	go generate .
 
