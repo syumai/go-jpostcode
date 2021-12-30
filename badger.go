@@ -1,25 +1,25 @@
-//go:generate statik -src=./tmp/badger
 package jpostcode
 
 import (
 	"bytes"
+	"embed"
 	"encoding/json"
 	"fmt"
 	"reflect"
 
 	"github.com/dgraph-io/badger/v2"
 	"github.com/mitchellh/mapstructure"
-	"github.com/rakyll/statik/fs"
-	_ "github.com/syumai/go-jpostcode/statik"
 )
+
+//go:embed badger/*
+var staticFS embed.FS
 
 type badgerAdapter struct {
 	db *badger.DB
 }
 
 func newBadgerAdapter() (*badgerAdapter, error) {
-	staticFS, err := fs.New()
-	f, err := staticFS.Open("/dump.db")
+	f, err := staticFS.Open("badger/dump.db")
 	if err != nil {
 		return nil, err
 	}
