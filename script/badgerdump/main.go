@@ -53,7 +53,7 @@ func main() {
 		return nil
 	})
 
-	f, err := os.OpenFile("./tmp/badger/dump.db", os.O_WRONLY|os.O_CREATE, 0666)
+	f, err := os.OpenFile("./badger/dump.db", os.O_WRONLY|os.O_CREATE, 0666)
 	if err != nil {
 		panic(err)
 	}
@@ -63,5 +63,4 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-
 }
