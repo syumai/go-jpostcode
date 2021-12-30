@@ -2,6 +2,7 @@
 
 * go-jpostcode is a Go package to find Japanese address data from Japanese postal code.
   - This package was created to provide data from https://github.com/kufu/jpostcode-data
+* This package requires Go 1.16+.
 
 ## Usage
 
