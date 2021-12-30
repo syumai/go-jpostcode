@@ -39,7 +39,7 @@ go-jpostcode doesn't use `cgo` directly, but its dependency `badger` depends on 
 ### Installation
 
 ```
-go get -u github.com/syumai/go-jpostcode/cmd/jpost
+go install github.com/syumai/go-jpostcode/cmd/jpost@latest
 ```
 
 ### Usage of jpost
