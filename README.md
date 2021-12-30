@@ -1,8 +1,10 @@
 # go-jpostcode
 
-* go-jpostcode is a Go package to find Japanese address data from Japanese postal code.
+[![Go Reference](https://pkg.go.dev/badge/github.com/syumai/go-jpostcode.svg)](https://pkg.go.dev/github.com/syumai/go-jpostcode)
+
+- go-jpostcode is a Go package to find Japanese address data from Japanese postal code.
   - This package was created to provide data from https://github.com/kufu/jpostcode-data
-* This package requires Go 1.16+.
+- This package requires Go 1.16+.
 
 ## Usage
 
@@ -21,7 +23,7 @@ fmt.Println(addressJSON)
 
 ### Example
 
-* [HTTP server example](https://github.com/syumai/go-jpostcode/blob/master/example/server/main.go)
+- [HTTP server example](https://github.com/syumai/go-jpostcode/blob/master/example/server/main.go)
 
 ```console
 $ go run example/server/main.go
@@ -34,7 +36,7 @@ go-jpostcode doesn't use `cgo` directly, but its dependency `badger` depends on 
 
 ## Install a CLI tool to get address from postcode
 
-* A CLI tool is given as [jpost](https://github.com/syumai/go-jpostcode/blob/master/cmd/jpost).
+- A CLI tool is given as [jpost](https://github.com/syumai/go-jpostcode/blob/master/cmd/jpost).
 
 ### Installation
 
@@ -44,7 +46,7 @@ go install github.com/syumai/go-jpostcode/cmd/jpost@latest
 
 ### Usage of jpost
 
-* To get address, **just give postal code** as argument.
+- To get address, **just give postal code** as argument.
 
 ```
 # Get address from postal code: 0010928.
@@ -60,12 +62,12 @@ $ make update
 
 ## License
 
-* MIT
+- MIT
 
 ## Author
 
-* [syumai](https://github.com/syumai)
+- [syumai](https://github.com/syumai)
 
 ## Original data
 
-* [jpostcode-data](https://github.com/kufu/jpostcode-data)
+- [jpostcode-data](https://github.com/kufu/jpostcode-data)
