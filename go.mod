@@ -11,9 +11,9 @@ require (
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
 	github.com/google/go-cmp v0.5.5
-	github.com/klauspost/compress v1.13.6 // indirect
-	github.com/mitchellh/mapstructure v1.4.3
-	golang.org/x/net v0.0.0-20211216030914-fe4d6282115f // indirect
-	golang.org/x/sys v0.0.0-20211216021012-1d35b9e2eb4e // indirect
-	google.golang.org/protobuf v1.27.1 // indirect
+	github.com/klauspost/compress v1.15.9 // indirect
+	github.com/mitchellh/mapstructure v1.5.0
+	golang.org/x/net v0.0.0-20220909164309-bea034e7d591 // indirect
+	golang.org/x/sys v0.0.0-20220909162455-aba9fc2a8ff2 // indirect
+	google.golang.org/protobuf v1.28.1 // indirect
 )
