@@ -66,3 +66,12 @@ func Test_convertJSONToAddress(t *testing.T) {
 		})
 	}
 }
+
+func Benchmark_newBadgerAdapter(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		_, err := newBadgerAdapter()
+		if err != nil {
+			b.Error(err)
+		}
+	}
+}
