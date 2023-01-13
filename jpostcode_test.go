@@ -65,3 +65,17 @@ func Test_Find(t *testing.T) {
 		})
 	}
 }
+
+func Benchmark_MapAdapter_Search(b *testing.B) {
+	adapter, err := newMapAdapter()
+	if err != nil {
+		b.Fatal(err)
+	}
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		_, err := adapter.SearchAddressesFromPostCode("1638001")
+		if err != nil {
+			b.Error(err)
+		}
+	}
+}

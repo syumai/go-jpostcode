@@ -6,7 +6,7 @@ import (
 	"github.com/google/go-cmp/cmp"
 )
 
-func Test_convertJSONToAddress(t *testing.T) {
+func Test_AddressFromMap(t *testing.T) {
 	tests := map[string]struct {
 		input   interface{}
 		want    *Address
@@ -55,23 +55,14 @@ func Test_convertJSONToAddress(t *testing.T) {
 	}
 	for n, tt := range tests {
 		t.Run(n, func(t *testing.T) {
-			got, err := convertJSONToAddress(tt.input)
+			got, err := AddressFromMap(tt.input)
 			if (err != nil) != tt.wantErr {
-				t.Errorf("convertJSONToAddress() error = %v, wantErr %v", err, tt.wantErr)
+				t.Errorf("AddressFromMap() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
 			if d := cmp.Diff(got, tt.want); d != "" {
 				t.Error(d)
 			}
 		})
-	}
-}
-
-func Benchmark_newBadgerAdapter(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		_, err := newBadgerAdapter()
-		if err != nil {
-			b.Error(err)
-		}
 	}
 }
