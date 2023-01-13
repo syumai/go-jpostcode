@@ -2,8 +2,6 @@ package jpostcode
 
 import (
 	"encoding/json"
-
-	"github.com/mitchellh/mapstructure"
 )
 
 type Address struct {
@@ -26,12 +24,4 @@ func (addr *Address) ToJSON() (string, error) {
 		return "", err
 	}
 	return string(b), nil
-}
-
-func AddressFromMap(input interface{}) (*Address, error) {
-	var addr Address
-	if err := mapstructure.Decode(input, &addr); err != nil {
-		return nil, err
-	}
-	return &addr, nil
 }
