@@ -2,8 +2,12 @@ package jpostcode
 
 import (
 	"compress/gzip"
+	"embed"
 	"encoding/gob"
 )
+
+//go:embed data/*
+var staticFS embed.FS
 
 type mapAdapter map[string][]*Address
 
