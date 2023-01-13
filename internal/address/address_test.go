@@ -1,15 +1,16 @@
-package jpostcode
+package address
 
 import (
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
+	"github.com/syumai/go-jpostcode"
 )
 
-func Test_AddressFromMap(t *testing.T) {
+func Test_FromMap(t *testing.T) {
 	tests := map[string]struct {
 		input   interface{}
-		want    *Address
+		want    *jpostcode.Address
 		wantErr bool
 	}{
 		"ok with valid input": {
@@ -26,7 +27,7 @@ func Test_AddressFromMap(t *testing.T) {
 				"office_name":      "東京都庁",
 				"office_name_kana": "トウキヨウトチヨウ",
 			},
-			want: &Address{
+			want: &jpostcode.Address{
 				PostCode:       "1638001",
 				Prefecture:     "東京都",
 				PrefectureCode: 13,
@@ -55,9 +56,9 @@ func Test_AddressFromMap(t *testing.T) {
 	}
 	for n, tt := range tests {
 		t.Run(n, func(t *testing.T) {
-			got, err := AddressFromMap(tt.input)
+			got, err := FromMap(tt.input)
 			if (err != nil) != tt.wantErr {
-				t.Errorf("AddressFromMap() error = %v, wantErr %v", err, tt.wantErr)
+				t.Errorf("FromMap() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
 			if d := cmp.Diff(got, tt.want); d != "" {

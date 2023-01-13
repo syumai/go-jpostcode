@@ -11,6 +11,7 @@ import (
 	"strings"
 
 	"github.com/syumai/go-jpostcode"
+	"github.com/syumai/go-jpostcode/internal/address"
 )
 
 func main() {
@@ -77,14 +78,14 @@ func decodeAddresses(addressData interface{}) ([]*jpostcode.Address, error) {
 			return nil, jpostcode.ErrInternal
 		}
 		for _, rawAddr := range rawAddrs {
-			addr, err := jpostcode.AddressFromMap(rawAddr)
+			addr, err := address.FromMap(rawAddr)
 			if err != nil {
 				return nil, err
 			}
 			addresses = append(addresses, addr)
 		}
 	default:
-		addr, err := jpostcode.AddressFromMap(addressData)
+		addr, err := address.FromMap(addressData)
 		if err != nil {
 			return nil, err
 		}
