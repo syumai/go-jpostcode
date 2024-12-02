@@ -23,16 +23,16 @@ fmt.Println(addressJSON)
 
 ### Example
 
-- [HTTP server example](https://github.com/syumai/go-jpostcode/blob/master/example/server/main.go)
+- [HTTP server example](https://github.com/syumai/go-jpostcode/blob/main/_examples/server/main.go)
 
 ```console
-$ go run example/server/main.go
+$ go run github.com/syumai/go-jpostcode/_examples/server@latest
 $ curl http://localhost:8090/0010928
 ```
 
 ## Install a CLI tool to get address from postcode
 
-- A CLI tool is given as [jpost](https://github.com/syumai/go-jpostcode/blob/master/cmd/jpost).
+- A CLI tool is given as [jpost](https://github.com/syumai/go-jpostcode/blob/main/cmd/jpost).
 
 ### Installation
 
