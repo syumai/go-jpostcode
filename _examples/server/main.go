@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"strings"
 
 	"github.com/syumai/go-jpostcode"
@@ -55,7 +56,11 @@ func main() {
 		fmt.Fprintf(w, "%s\n", addrJSON)
 	})
 
-	port := "8090"
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8090"
+	}
+
 	fmt.Printf("listening on http://localhost:%s\n", port)
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", port), nil))
 }
